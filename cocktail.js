@@ -43,7 +43,8 @@ app.intent(
     var name = request.slot("name");
 
     for (var i = 0; i < db.length; i++) {
-      //console.log(JSON.stringify(db[i]));
+      if (db[i]["name"]["@value"])
+			{
       if (db[i]["name"]["@value"].toLowerCase().indexOf(name.toLowerCase()) > -1) {
         if (db[i]["recipeInstructions"]) {
 					response.say("Das Rezept von " + db[i]["name"]["@value"]+": ");
@@ -52,6 +53,7 @@ app.intent(
         }
       }
     }
+	}
     response.say("Leider konnte ich keine Cocktail Rezepte finden.");
     //  response.say("Das Rezept von "+name+" ist sehr geil.");
   }
